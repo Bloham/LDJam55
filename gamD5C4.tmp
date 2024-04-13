@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dymspuwi7oanj"]
+[gd_scene load_steps=7 format=3 uid="uid://dymspuwi7oanj"]
 
 [ext_resource type="Script" path="res://Buildings.gd" id="1_dljpk"]
 [ext_resource type="PackedScene" uid="uid://csbumgvwfu0t4" path="res://building.tscn" id="1_ecxvq"]
@@ -7,87 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://hslsq00oju8x" path="res://square.tscn" id="4_jkkae"]
 [ext_resource type="Texture2D" uid="uid://83jg3j6lmqah" path="res://assets/monk.png" id="4_pdc83"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nasya"]
-size = Vector2(275, 254)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp1fs"]
-size = Vector2(846.5, 250.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6essj"]
-size = Vector2(124, 58)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvile"]
-size = Vector2(52, 380)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eheh7"]
-size = Vector2(308, 275)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ciof"]
-size = Vector2(216, 260)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_imoa8"]
-size = Vector2(853, 267)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u1sm"]
-size = Vector2(126, 62)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0w1p"]
-size = Vector2(634, 118)
-
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_evsxu")
 
 [node name="Buildings" type="Node2D" parent="."]
 script = ExtResource("1_dljpk")
-
-[node name="IDLE AREA" type="Area2D" parent="Buildings"]
-disable_mode = 1
-gravity_space_override = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(127.5, 117)
-shape = SubResource("RectangleShape2D_nasya")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(813.75, 112.25)
-shape = SubResource("RectangleShape2D_cp1fs")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(328, 19)
-shape = SubResource("RectangleShape2D_6essj")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(16, 435)
-shape = SubResource("RectangleShape2D_rvile")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(323, 305.5)
-shape = SubResource("RectangleShape2D_eheh7")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(150, 493)
-shape = SubResource("RectangleShape2D_2ciof")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(810.5, 489.5)
-shape = SubResource("RectangleShape2D_imoa8")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(321, 592)
-shape = SubResource("RectangleShape2D_6u1sm")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
-
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(920, 297)
-shape = SubResource("RectangleShape2D_y0w1p")
-debug_color = Color(0, 0.6, 0.701961, 0.0431373)
 
 [node name="Brewery" parent="Buildings" instance=ExtResource("1_ecxvq")]
 position = Vector2(329, 103)
@@ -265,10 +189,6 @@ stretch_mode = 4
 layout_mode = 2
 text = "8"
 
-[node name="MonkSpawner" type="Marker2D" parent="."]
-position = Vector2(320, 299)
-
-[connection signal="input_event" from="Buildings/IDLE AREA" to="Buildings" method="_on_idle_area_input_event"]
 [connection signal="newBuildingSelected" from="Buildings/Brewery" to="Buildings" method="_on_brewery_new_building_selected"]
 [connection signal="newBuildingSelected" from="Buildings/Skriptorium" to="Buildings" method="_on_skriptorium_new_building_selected"]
 [connection signal="newBuildingSelected" from="Buildings/Field" to="Buildings" method="_on_field_new_building_selected"]

@@ -12,7 +12,7 @@ var spirits = []
 
 var resources = {
 	"Beer": 0,
-	"Food": 20,
+	"Food": 25,
 	"Faith": 20,
 	"Knowledge": 0
 	}
@@ -25,6 +25,7 @@ var maxCap = 100
 @onready var knowledge_progress_bar = $UI/Panel/MarginContainer/HBoxContainer/Knowledge/ProgressBar
 @onready var monk_lable = $UI/Panel/MarginContainer/HBoxContainer/Monks/HBoxContainer/MonkLable
 @onready var spirit_lable = $UI/Panel/MarginContainer/HBoxContainer/Spirits/HBoxContainer/SpiritLable
+@onready var animation_player = $AnimationPlayer
 
 
 func _ready():
@@ -57,3 +58,16 @@ func update_progress_bars():
 	monk_lable.text = str(workers.size(), " / ", maxWorkers)
 	spirit_lable.text = str(spirits.size(), " / ", maxSprits)
 
+
+func food_flash_red():
+	animation_player.play("FoodFlashRed")
+
+func faith_flash_red():
+	animation_player.play("FaithFlashRed")
+
+func beer_flash_red():
+	animation_player.play("BeerFlashRed")
+
+func knowledge_flash_red():
+	animation_player.play("KnowledgeFlashRed")
+	

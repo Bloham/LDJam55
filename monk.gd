@@ -1,76 +1,179 @@
 extends RigidBody2D
 
+# Constants and Enums
+enum States { IDLE, ASSIGNED, WORK, RITUAL}
+var state = States.IDLE
+
+# Exported Variables
+@export var starting_position = Vector2(320, 300)
+@export var wander_offset = Vector2(100, 100)
+
+# Node References
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
 
-enum States { IDLE, ASSIGNED, RITUAL}
-var state = States.IDLE
-var speed = 150  # Adjusted for forces; might need tuning
-var target_building = null
-
+# Movement Variables
+var speed = 100
+var direction = Vector2.ZERO
 var current_waypoint = Vector2()
-@export var starting_position = Vector2()
-var wander_offset = Vector2(80, 80)
 var is_moving = false
 var idle_timer = 0.0
+
+# Worker Variables
+var assigned_building = null
+var target_building = null
+
+# Separation Behaviour
+var separation_strength = 200
+
+# Animation
+var animationSpeed = 1
 var idle_duration = 1.0  # Time in seconds the monk idles at a waypoint
 
-var animationSpeed = 1 
-var direction = Vector2.ZERO
+# Signal
+signal workerAtBuilding
 
-# For wandering behavior
-
+# Initialization
 func _ready():
-	randomize() 
-	print("Starting position set to:", starting_position)
-	idle_timer = randf_range(0.5, 1)
-	idle_duration = randf_range(0.5, 1)
-	animationSpeed = randf_range(0.2, 2)
-	animation_player.speed_scale = animationSpeed
+	initialize_monk()
+	for building in get_tree().get_nodes_in_group("Buildings"):
+		building.request_worker.connect(_on_building_request_worker)
+		lookForWork()
+
+func lookForWork():
+	for building in get_tree().get_nodes_in_group("Buildings"):
+		if building.isFull == false:
+			_on_building_request_worker(building)
+
+func initialize_monk():
+	randomize()
 	gravity_scale = 0
+	set_random_animation_speed()
 	choose_new_waypoint()
 
+func set_random_animation_speed():
+	animationSpeed = randf_range(0.2, 2)
+	idle_timer = randf_range(0.5, 1)
+	idle_duration = randf_range(0.5, 1)
+	animation_player.speed_scale = animationSpeed
+	
+# Building Worker Request Handler
+func _on_building_request_worker(building):
+	if assigned_building == null:  # Monk can be re-assigned regardless of its movement
+		assign_to_building(building)
+
+func can_assign_to_building(building):
+	target_building = building
+	state = States.ASSIGNED
+	is_moving = true  # Monk should start moving towards the assigned building
+	move_to_building(state)
+
+# Physics Processing
 func _integrate_forces(state):
+	apply_separation_force(state)
 	match self.state:
-		States.IDLE:
-			wander(state)
-		States.ASSIGNED:
-			move_to_building(state)
-		States.RITUAL:
-			pass # Implement logic for defensive behavior
+		States.IDLE: handle_idle_state(state)
+		States.ASSIGNED: move_to_building(state)
+		States.WORK: work_at_building(state)
+		States.RITUAL: pass  # Future implementation
 
-func wander(state):
+func apply_separation_force(state):
+	var separation_force = get_separation_force()
+	state.apply_central_impulse(separation_force)
+
+# Idle State Handling
+func handle_idle_state(state):
 	if is_moving:
-		direction = (current_waypoint - global_position).normalized()
-		var desired_velocity = direction * speed
-		state.apply_central_impulse(desired_velocity - state.linear_velocity)
-		sprite_2d.flip_h = direction.x < 0
-		if global_position.distance_to(current_waypoint) < 5:
-			is_moving = false
-			animation_player.play("IDLE")
-			idle_timer = idle_duration
-	else: # Handle idling
-		if idle_timer > 0:
-			idle_timer -= state.step
-		else: # Choose a new waypoint after idling
-			choose_new_waypoint()
+		move_towards_waypoint(state)
+		check_arrival_at_waypoint(state)
+	else:
+		countdown_to_idle_or_choose_waypoint(state)
+
+func move_towards_waypoint(state):
+	direction = (current_waypoint - global_position).normalized()
+	var desired_velocity = direction * speed
+	state.apply_central_impulse(desired_velocity - state.linear_velocity)
+	sprite_2d.flip_h = direction.x < 0
 
 
-func choose_new_waypoint():
-	var new_x = randf_range(-wander_offset.x, wander_offset.x)
-	var new_y = randf_range(-wander_offset.y, wander_offset.y)
-	current_waypoint = starting_position + Vector2(new_x, new_y)
-	is_moving = true
-	animation_player.play("WALK")
+func check_arrival_at_waypoint(state):
+	if global_position.distance_to(current_waypoint) < 15:
+		is_moving = false
+		animation_player.play("IDLE")
+		idle_timer = idle_duration
+		lookForWork()
 
+func countdown_to_idle_or_choose_waypoint(state):
+	if idle_timer > 0:
+		idle_timer -= state.step
+	else:
+		choose_new_waypoint()
+
+# Building Movement
 func move_to_building(state):
 	if target_building:
 		direction = (target_building.global_position - global_position).normalized()
 		var desired_velocity = direction * speed
 		state.apply_central_impulse(desired_velocity - state.linear_velocity)
-		if global_position.distance_to(target_building.global_position) < 10:
-			self.state = States.IDLE # Change state to IDLE or another appropriate state upon reaching
+		if has_arrived_at_building():
+			#print("HAS ARRIVED!", target_building)
+			if target_building.isFull == false:
+				self.state = States.WORK
+				target_building.addWorker(self)
+			else:
+				self.state = States.IDLE
+				lookForWork()
+			clear_assigned_building()
 
+func work_at_building(state):
+	self.visible = false
+	is_moving = false
+
+func become_idle():
+	print("Become Idle Again")
+	self.visible = true
+	state = States.IDLE
+	choose_new_waypoint()
+
+func has_arrived_at_building() -> bool:
+	return global_position.distance_to(target_building.global_position) < 40
+
+func clear_assigned_building():
+	assigned_building = null
+	target_building = null
+	is_moving = false
+
+# Worker Assignment
 func assign_to_building(building):
-	state = States.ASSIGNED
 	target_building = building
+	state = States.ASSIGNED
+	is_moving = true
+	# More logic can be added here for what happens when a monk is assigned
+
+# Utility Functions
+func choose_new_waypoint():
+	current_waypoint = starting_position + get_random_wander_offset()
+	is_moving = true
+	animation_player.play("WALK")
+
+
+# Helper function within your monk script
+func get_random_wander_offset() -> Vector2:
+	return Vector2(
+		randf_range(-wander_offset.x, wander_offset.x),
+		randf_range(-wander_offset.y, wander_offset.y)
+	)
+
+func get_separation_force() -> Vector2:
+	var separation_force = Vector2()
+	var neighbors = 0
+	for body in get_node("Area2D").get_overlapping_bodies():
+		if body.is_in_group("monks"):  # Assuming monks are in a 'monks' group
+			var to_body = global_position - body.global_position
+			if to_body.length() > 0:
+				separation_force += to_body.normalized() / to_body.length()
+				neighbors += 1
+	if neighbors > 0:
+		separation_force /= neighbors
+	return separation_force * separation_strength
+

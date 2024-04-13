@@ -5,6 +5,8 @@ extends Node2D
 @onready var monk_button = $MarginContainer/MonkButton
 @onready var spirit_button = $MarginContainer/SpiritButton
 
+@export var monkFoodCost = 25
+@export var monkFaithCost = 10
 
 var workersAtBuilding = 0
 
@@ -26,9 +28,12 @@ func showSpiritButton():
 
 
 func _on_monk_button_button_down():
-	print("generate new Monk!")
-	game_scene.maxWorkers += 1
-	game_scene.spawn_monks()
+	if game_scene.resources["Food"] > monkFoodCost && game_scene.resources["Faith"] > monkFaithCost:
+		print("generate new Monk!")
+		game_scene.resources["Food"] -= monkFoodCost
+		game_scene.resources["Faith"] -= monkFaithCost
+		game_scene.maxWorkers += 1
+		game_scene.spawn_monks(1, self.position)
 
 
 

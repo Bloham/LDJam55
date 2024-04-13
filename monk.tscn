@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctkqdjscd2rx2"]
+[gd_scene load_steps=9 format=3 uid="uid://ctkqdjscd2rx2"]
 
 [ext_resource type="Script" path="res://monk.gd" id="1_r3ql6"]
 [ext_resource type="Texture2D" uid="uid://83jg3j6lmqah" path="res://assets/monk.png" id="1_whed5"]
@@ -115,10 +115,15 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_5soci"]
 radius = 26.0
 
-[node name="Monk" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmjct"]
+radius = 44.0114
+
+[node name="Monk" type="RigidBody2D" groups=["monks"]]
+light_mask = 2
+visibility_layer = 2
 lock_rotation = true
+linear_damp = 1.0
 script = ExtResource("1_r3ql6")
-starting_position = Vector2(320, 300)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5)
@@ -131,3 +136,10 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5soci")
+
+[node name="Area2D" type="Area2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gmjct")

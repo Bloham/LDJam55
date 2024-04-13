@@ -12,6 +12,7 @@ size = Vector2(125, 117)
 [node name="BUILDING" type="Node2D" groups=["Buildings"]]
 position = Vector2(196, 182)
 script = ExtResource("1_jkwlf")
+resource = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_687f6")

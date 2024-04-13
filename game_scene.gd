@@ -4,7 +4,7 @@ extends Node2D
 
 var MONK = preload("res://monk.tscn")
 
-@export var maxWorkers = 8
+@export var maxWorkers = 1
 var workers = []
 
 @export var maxSprits = 1
@@ -12,8 +12,8 @@ var spirits = []
 
 var resources = {
 	"Beer": 0,
-	"Food": 0,
-	"Faith": 0,
+	"Food": 20,
+	"Faith": 20,
 	"Knowledge": 0
 	}
 
@@ -32,30 +32,18 @@ func _ready():
 	beer_progress_bar.max_value = maxCap
 	food_progress_bar.max_value = maxCap
 	knowledge_progress_bar.max_value = maxCap
-	
-	spawn_monks()
+	spawn_monks(maxWorkers, monk_spawner.position)
 
 
-func spawn_monks():
-	if not MONK:
-		print("MonkScene not loaded")
-		return
-	else:
-		print("MonkScene is loaded, proceeding to spawn monks.")
-
+func spawn_monks(ammount, spawnPosition):
 	var current_workers_count = workers.size()  # Get the current number of spawned monks
 	var monks_to_spawn = maxWorkers - current_workers_count  # Calculate how many more monks need to be spawned
-
-	for i in range(monks_to_spawn):
+	
+	for i in range(ammount):
 		var new_monk = MONK.instantiate()
-		if not new_monk:
-			print("Failed to instance monk.")
-		else:
-			print("Monk instanced successfully.")
 		add_child(new_monk)
-		new_monk.position = monk_spawner.position  # Ensure monk_spawner is a valid Node2D
+		new_monk.position = spawnPosition  # Ensure monk_spawner is a valid Node2D
 		workers.append(new_monk)  # Keep track of workers
-		print("Monk positioned at:", new_monk.position)
 
 
 func _physics_process(delta):

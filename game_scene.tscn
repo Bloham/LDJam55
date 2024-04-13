@@ -40,6 +40,13 @@ script = ExtResource("1_evsxu")
 [node name="Buildings" type="Node2D" parent="."]
 script = ExtResource("1_dljpk")
 
+[node name="MONKBOUNDARY" type="StaticBody2D" parent="Buildings"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings/MONKBOUNDARY"]
+polygon = PackedVector2Array(0, 0, 1200, 0, 1200, 600, 1433, 798, 1457, -275, -315, -249, -319, -246, -309, 920, 1431, 798, 1200, 600, 0, 600)
+
 [node name="IDLE AREA" type="Area2D" parent="Buildings"]
 disable_mode = 1
 gravity_space_override = 1
@@ -60,7 +67,7 @@ shape = SubResource("RectangleShape2D_6essj")
 debug_color = Color(0, 0.6, 0.701961, 0.0431373)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Buildings/IDLE AREA"]
-position = Vector2(16, 435)
+position = Vector2(17, 435)
 shape = SubResource("RectangleShape2D_rvile")
 debug_color = Color(0, 0.6, 0.701961, 0.0431373)
 
@@ -266,7 +273,7 @@ layout_mode = 2
 text = "8"
 
 [node name="MonkSpawner" type="Marker2D" parent="."]
-position = Vector2(320, 299)
+position = Vector2(320, 300)
 
 [connection signal="input_event" from="Buildings/IDLE AREA" to="Buildings" method="_on_idle_area_input_event"]
 [connection signal="newBuildingSelected" from="Buildings/Brewery" to="Buildings" method="_on_brewery_new_building_selected"]

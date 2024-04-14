@@ -60,7 +60,7 @@ script = ExtResource("1_r3ql6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tky21")
 animation = &"pray"
-frame_progress = 0.725016
+frame_progress = 0.487374
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

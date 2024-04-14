@@ -60,6 +60,8 @@ radius = 56.0
 radius = 31.0161
 
 [node name="Spitit" type="RigidBody2D" groups=["Spirits"]]
+collision_layer = 2
+collision_mask = 2
 gravity_scale = 0.0
 lock_rotation = true
 angular_damp = 2.23
@@ -70,7 +72,7 @@ light_mask = 2
 visibility_layer = 2
 sprite_frames = SubResource("SpriteFrames_i888r")
 animation = &"Fight"
-frame_progress = 0.392411
+frame_progress = 0.682116
 
 [node name="Area2D" type="Area2D" parent="."]
 light_mask = 2

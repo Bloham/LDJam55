@@ -1,11 +1,29 @@
-[gd_scene load_steps=22 format=3 uid="uid://dymspuwi7oanj"]
+[gd_scene load_steps=34 format=3 uid="uid://dymspuwi7oanj"]
 
 [ext_resource type="Script" path="res://Buildings.gd" id="1_dljpk"]
 [ext_resource type="PackedScene" uid="uid://csbumgvwfu0t4" path="res://building.tscn" id="1_ecxvq"]
 [ext_resource type="Script" path="res://game_scene.gd" id="1_evsxu"]
+[ext_resource type="Texture2D" uid="uid://rs732x3vqsjk" path="res://assets/background.png" id="2_5wssu"]
+[ext_resource type="Texture2D" uid="uid://b30dld0lqe1fm" path="res://assets/bush0.png" id="3_cpfhe"]
 [ext_resource type="Texture2D" uid="uid://ckv5ob530pmjp" path="res://icon.svg" id="4_d5rul"]
 [ext_resource type="PackedScene" uid="uid://hslsq00oju8x" path="res://square.tscn" id="4_jkkae"]
 [ext_resource type="Texture2D" uid="uid://83jg3j6lmqah" path="res://assets/monk.png" id="4_pdc83"]
+[ext_resource type="Texture2D" uid="uid://cjptawclbcx7w" path="res://assets/tree1.png" id="4_s4njl"]
+[ext_resource type="Texture2D" uid="uid://davq1ii661mwd" path="res://assets/tree0.png" id="5_6r12d"]
+[ext_resource type="Texture2D" uid="uid://copiln8olfu0l" path="res://assets/field.png" id="9_yctjm"]
+[ext_resource type="Texture2D" uid="uid://dns3pcjrgimp4" path="res://assets/chruch.png" id="10_p0aca"]
+[ext_resource type="Texture2D" uid="uid://cf607n1udsmm7" path="res://assets/Icon_faith.png" id="12_wtgp5"]
+[ext_resource type="Texture2D" uid="uid://v7iocvdp7u8o" path="res://assets/icon_food.png" id="14_8f4x2"]
+[ext_resource type="Texture2D" uid="uid://3xugy3xt4laq" path="res://assets/monk_pray0.png" id="15_fusn2"]
+[ext_resource type="Texture2D" uid="uid://dj8w0p8yx6bhp" path="res://assets/spirit_damage_0.png" id="16_s8xgl"]
+[ext_resource type="AudioStream" uid="uid://3v7ppfh4adta" path="res://assets/sfx/klackern.mp3" id="17_iwfbs"]
+[ext_resource type="AudioStream" uid="uid://b4ttv3kso2hrr" path="res://assets/sfx/button.mp3" id="18_55s6u"]
+[ext_resource type="AudioStream" uid="uid://bb47vq2wem2f7" path="res://assets/sfx/on my way.mp3" id="19_kdjub"]
+[ext_resource type="AudioStream" uid="uid://cnudrjelspb8i" path="res://assets/sfx/wololo.mp3" id="20_2xhat"]
+[ext_resource type="AudioStream" uid="uid://b186a58401ykj" path="res://assets/sfx/yes sir.mp3" id="21_m1kne"]
+[ext_resource type="AudioStream" uid="uid://dnhcrj5mdap3p" path="res://assets/sfx/night.mp3" id="22_q8rl0"]
+[ext_resource type="AudioStream" uid="uid://5q05oyxnepo0" path="res://assets/sfx/day.mp3" id="23_uo5yd"]
+[ext_resource type="AudioStream" uid="uid://1gx4sstvr25b" path="res://assets/sfx/arg.mp3" id="24_jbhvq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nasya"]
 size = Vector2(275, 254)
@@ -34,384 +52,309 @@ size = Vector2(126, 62)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0w1p"]
 size = Vector2(634, 118)
 
-[sub_resource type="Animation" id="Animation_igexh"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:r")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:g")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:b")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:a")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:r")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:g")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:b")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:a")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:r")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/13/type = "bezier"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:g")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:b")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/15/type = "bezier"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:a")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_y36x7"]
-resource_name = "FoodFlashRed"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Food/ProgressBar:self_modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-
-[sub_resource type="Animation" id="Animation_q5qih"]
-resource_name = "FaithFlashRed"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Faith/ProgressBar:self_modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-
-[sub_resource type="Animation" id="Animation_6tkrm"]
-resource_name = "BeerFlashRed"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Beer/ProgressBar:self_modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-
-[sub_resource type="Animation" id="Animation_ed5nq"]
-resource_name = "KnowledgeFlashRed"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/Panel/MarginContainer/HBoxContainer/Knowledge:self_modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vk7r"]
-_data = {
-"BeerFlashRed": SubResource("Animation_6tkrm"),
-"FaithFlashRed": SubResource("Animation_q5qih"),
-"FoodFlashRed": SubResource("Animation_y36x7"),
-"KnowledgeFlashRed": SubResource("Animation_ed5nq"),
-"RESET": SubResource("Animation_igexh")
-}
-
-[node name="GameScene" type="Node2D"]
+[node name="GameScene" type="Node2D" groups=["GameManager"]]
 script = ExtResource("1_evsxu")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1200.0
+offset_bottom = 600.0
+texture = ExtResource("2_5wssu")
+
+[node name="Bush0" type="Sprite2D" parent="Background"]
+position = Vector2(257, 34)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush1" type="Sprite2D" parent="Background"]
+position = Vector2(472, 25)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush2" type="Sprite2D" parent="Background"]
+position = Vector2(652, 29)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush3" type="Sprite2D" parent="Background"]
+position = Vector2(900, 21)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush4" type="Sprite2D" parent="Background"]
+position = Vector2(1090, 22)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush8" type="Sprite2D" parent="Background"]
+position = Vector2(1081, 595)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush9" type="Sprite2D" parent="Background"]
+position = Vector2(905, 596)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush10" type="Sprite2D" parent="Background"]
+position = Vector2(618, 598)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush11" type="Sprite2D" parent="Background"]
+position = Vector2(357, 592)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush12" type="Sprite2D" parent="Background"]
+position = Vector2(266, 591)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush13" type="Sprite2D" parent="Background"]
+position = Vector2(455, 589)
+texture = ExtResource("3_cpfhe")
+
+[node name="Tree21" type="Sprite2D" parent="Background"]
+position = Vector2(1151, 196)
+texture = ExtResource("4_s4njl")
+
+[node name="Bush14" type="Sprite2D" parent="Background"]
+position = Vector2(92, 590)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush15" type="Sprite2D" parent="Background"]
+position = Vector2(30, 584)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush16" type="Sprite2D" parent="Background"]
+position = Vector2(-37, 386)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush17" type="Sprite2D" parent="Background"]
+position = Vector2(-26, 279)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush18" type="Sprite2D" parent="Background"]
+position = Vector2(-29, 87)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush19" type="Sprite2D" parent="Background"]
+position = Vector2(-14, 41)
+texture = ExtResource("3_cpfhe")
+
+[node name="Tree34" type="Sprite2D" parent="Background"]
+position = Vector2(38, 88)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree35" type="Sprite2D" parent="Background"]
+position = Vector2(79, 48)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree0" type="Sprite2D" parent="Background"]
+position = Vector2(1154, 67)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree39" type="Sprite2D" parent="Background"]
+position = Vector2(526, 55)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree19" type="Sprite2D" parent="Background"]
+position = Vector2(1155, 369)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree47" type="Sprite2D" parent="Background"]
+position = Vector2(778, 245)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree22" type="Sprite2D" parent="Background"]
+position = Vector2(1187, 122)
+texture = ExtResource("4_s4njl")
+
+[node name="Bush5" type="Sprite2D" parent="Background"]
+position = Vector2(1210, 178)
+texture = ExtResource("3_cpfhe")
+
+[node name="Bush20" type="Sprite2D" parent="Background"]
+position = Vector2(877, 475)
+texture = ExtResource("3_cpfhe")
+
+[node name="Tree31" type="Sprite2D" parent="Background"]
+position = Vector2(3, 478)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree1" type="Sprite2D" parent="Background"]
+position = Vector2(1163, 252)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree20" type="Sprite2D" parent="Background"]
+position = Vector2(1192, 311)
+texture = ExtResource("4_s4njl")
+
+[node name="Bush6" type="Sprite2D" parent="Background"]
+position = Vector2(1212, 364)
+texture = ExtResource("3_cpfhe")
+
+[node name="Tree2" type="Sprite2D" parent="Background"]
+position = Vector2(1166, 420)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree36" type="Sprite2D" parent="Background"]
+position = Vector2(196, 48)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree4" type="Sprite2D" parent="Background"]
+position = Vector2(824, 599)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree5" type="Sprite2D" parent="Background"]
+position = Vector2(988, 598)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree6" type="Sprite2D" parent="Background"]
+position = Vector2(494, 594)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree7" type="Sprite2D" parent="Background"]
+position = Vector2(191, 594)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree48" type="Sprite2D" parent="Background"]
+position = Vector2(961, 345)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree49" type="Sprite2D" parent="Background"]
+position = Vector2(165, 439)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree8" type="Sprite2D" parent="Background"]
+position = Vector2(24, 550)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree9" type="Sprite2D" parent="Background"]
+position = Vector2(-17, 345)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree10" type="Sprite2D" parent="Background"]
+position = Vector2(11, 158)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree43" type="Sprite2D" parent="Background"]
+position = Vector2(744, 39)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree11" type="Sprite2D" parent="Background"]
+position = Vector2(127, 67)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree12" type="Sprite2D" parent="Background"]
+position = Vector2(348, 50)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree13" type="Sprite2D" parent="Background"]
+position = Vector2(584, 54)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree14" type="Sprite2D" parent="Background"]
+position = Vector2(794, 41)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree15" type="Sprite2D" parent="Background"]
+position = Vector2(1008, 40)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree16" type="Sprite2D" parent="Background"]
+position = Vector2(1030, 591)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree17" type="Sprite2D" parent="Background"]
+position = Vector2(1154, 541)
+texture = ExtResource("4_s4njl")
+
+[node name="Bush7" type="Sprite2D" parent="Background"]
+position = Vector2(1217, 458)
+texture = ExtResource("3_cpfhe")
+
+[node name="Tree18" type="Sprite2D" parent="Background"]
+position = Vector2(1188, 514)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree23" type="Sprite2D" parent="Background"]
+position = Vector2(766, 592)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree50" type="Sprite2D" parent="Background"]
+position = Vector2(289, 131)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree51" type="Sprite2D" parent="Background"]
+position = Vector2(439, 155)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree52" type="Sprite2D" parent="Background"]
+position = Vector2(387, 513)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree24" type="Sprite2D" parent="Background"]
+position = Vector2(731, 566)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree25" type="Sprite2D" parent="Background"]
+position = Vector2(691, 603)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree26" type="Sprite2D" parent="Background"]
+position = Vector2(565, 620)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree27" type="Sprite2D" parent="Background"]
+position = Vector2(290, 622)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree28" type="Sprite2D" parent="Background"]
+position = Vector2(442, 593)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree29" type="Sprite2D" parent="Background"]
+position = Vector2(144, 613)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree30" type="Sprite2D" parent="Background"]
+position = Vector2(42, 582)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree32" type="Sprite2D" parent="Background"]
+position = Vector2(30, 382)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree33" type="Sprite2D" parent="Background"]
+position = Vector2(1, 228)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree37" type="Sprite2D" parent="Background"]
+position = Vector2(296, 31)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree38" type="Sprite2D" parent="Background"]
+position = Vector2(422, 45)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree40" type="Sprite2D" parent="Background"]
+position = Vector2(479, 56)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree41" type="Sprite2D" parent="Background"]
+position = Vector2(668, 62)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree42" type="Sprite2D" parent="Background"]
+position = Vector2(711, 51)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree44" type="Sprite2D" parent="Background"]
+position = Vector2(868, 41)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree45" type="Sprite2D" parent="Background"]
+position = Vector2(934, 38)
+texture = ExtResource("4_s4njl")
+
+[node name="Tree3" type="Sprite2D" parent="Background"]
+position = Vector2(1153, 591)
+texture = ExtResource("5_6r12d")
+
+[node name="Tree46" type="Sprite2D" parent="Background"]
+position = Vector2(1092, 51)
+texture = ExtResource("4_s4njl")
 
 [node name="Buildings" type="Node2D" parent="."]
 script = ExtResource("1_dljpk")
@@ -473,30 +416,42 @@ shape = SubResource("RectangleShape2D_y0w1p")
 debug_color = Color(0, 0.6, 0.701961, 0.0431373)
 
 [node name="Brewery" parent="Buildings" instance=ExtResource("1_ecxvq")]
+visible = false
 position = Vector2(329, 103)
 sprite = ExtResource("4_d5rul")
 resource = "Beer"
 
 [node name="Skriptorium" parent="Buildings" instance=ExtResource("1_ecxvq")]
+visible = false
 position = Vector2(322, 498)
 sprite = ExtResource("4_d5rul")
 resource = "Knowledge"
 
 [node name="Field" parent="Buildings" instance=ExtResource("1_ecxvq")]
-position = Vector2(541, 293)
-sprite = ExtResource("4_d5rul")
+position = Vector2(543, 332)
+sprite = ExtResource("9_yctjm")
 resource = "Food"
+resourceICON = ExtResource("14_8f4x2")
 
 [node name="Church" parent="Buildings" instance=ExtResource("1_ecxvq")]
-position = Vector2(106, 299)
-sprite = ExtResource("4_d5rul")
+position = Vector2(104, 253)
+sprite = ExtResource("10_p0aca")
 resource = "Faith"
+resourceICON = ExtResource("12_wtgp5")
 
-[node name="SQUARE" parent="Buildings" instance=ExtResource("4_jkkae")]
-z_index = -10
+[node name="SQUARE" parent="Buildings" groups=["Sanctuary"] instance=ExtResource("4_jkkae")]
 position = Vector2(319, 299)
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="NightColorRect" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0470588, 0.109804, 0.239216, 0.415686)
 
 [node name="Panel" type="Panel" parent="UI"]
 custom_minimum_size = Vector2(0, 30)
@@ -535,7 +490,7 @@ show_percentage = false
 [node name="TextureRect" type="TextureRect" parent="UI/Panel/MarginContainer/HBoxContainer/Faith"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("4_pdc83")
+texture = ExtResource("12_wtgp5")
 expand_mode = 2
 stretch_mode = 4
 
@@ -543,6 +498,7 @@ stretch_mode = 4
 layout_mode = 2
 
 [node name="Beer" type="MarginContainer" parent="UI/Panel/MarginContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -563,6 +519,7 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="VSeparator4" type="VSeparator" parent="UI/Panel/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Food" type="MarginContainer" parent="UI/Panel/MarginContainer/HBoxContainer"]
@@ -581,14 +538,16 @@ show_percentage = false
 [node name="TextureRect" type="TextureRect" parent="UI/Panel/MarginContainer/HBoxContainer/Food"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("4_pdc83")
+texture = ExtResource("14_8f4x2")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="VSeparator3" type="VSeparator" parent="UI/Panel/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Knowledge" type="MarginContainer" parent="UI/Panel/MarginContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -620,7 +579,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="UI/Panel/MarginContainer/HBoxContainer/Monks/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("4_pdc83")
+texture = ExtResource("15_fusn2")
 expand_mode = 2
 stretch_mode = 4
 
@@ -640,7 +599,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="UI/Panel/MarginContainer/HBoxContainer/Spirits/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("4_pdc83")
+texture = ExtResource("16_s8xgl")
 expand_mode = 2
 stretch_mode = 4
 
@@ -651,10 +610,36 @@ text = "8"
 [node name="MonkSpawner" type="Marker2D" parent="."]
 position = Vector2(320, 300)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1vk7r")
-}
+[node name="NightAndDay" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="arbeiten" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("17_iwfbs")
+
+[node name="button" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_55s6u")
+
+[node name="onMyWay" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_kdjub")
+
+[node name="wololo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_2xhat")
+
+[node name="yesSir" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("21_m1kne")
+
+[node name="night" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_q8rl0")
+
+[node name="day" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_uo5yd")
+
+[node name="arg" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_jbhvq")
 
 [connection signal="input_event" from="Buildings/IDLE AREA" to="Buildings" method="_on_idle_area_input_event"]
 [connection signal="newBuildingSelected" from="Buildings/Brewery" to="Buildings" method="_on_brewery_new_building_selected"]
@@ -662,3 +647,4 @@ libraries = {
 [connection signal="newBuildingSelected" from="Buildings/Field" to="Buildings" method="_on_field_new_building_selected"]
 [connection signal="newBuildingSelected" from="Buildings/Church" to="Buildings" method="_on_church_new_building_selected"]
 [connection signal="newBuildingSelected" from="Buildings/SQUARE" to="Buildings" method="_on_square_new_building_selected"]
+[connection signal="timeout" from="NightAndDay" to="." method="_on_night_and_day_timeout"]

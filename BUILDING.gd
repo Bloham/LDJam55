@@ -2,6 +2,7 @@ extends Node2D
 
 @export var sprite = Texture2D
 @export var resource = ""
+@export var resourceICON = Texture2D
 
 @onready var assigning_workers = $BuildingUI/AssigningWorkers
 @onready var game_scene = $"../.."
@@ -13,11 +14,13 @@ var generatedRessource = 0
 var isFull = true
 
 
+
 signal newBuildingSelected(building)
 signal request_worker(building)
 
 func _ready():
 	$Sprite2D.texture = sprite
+	$BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer/resourceICON.texture = resourceICON
 	$BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/BuildingNameLable.text = self.name
 	$BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer/ResourceLabel.text = resource
 	update_Label()
@@ -33,15 +36,20 @@ func hide_assigning_workers():
 	assigning_workers.visible = false
 
 func _on_add_button_button_down():
+	%onMyWay.play()
 	#if game_scene.workers.size() >= 1 && workersAtBuilding.size() < open_positions:
 	request_workers(1)
 
 func addWorker(worker):
-	workersAtBuilding += 1
-	game_scene.workers.erase(worker)
-	worker.queue_free()
-	checkIfFull()
-	update_Label()
+	if game_scene.current_state == game_scene.NightDay.DAY:
+		%arbeiten.play()
+		workersAtBuilding += 1
+		game_scene.workers.erase(worker)
+		worker.queue_free()
+		checkIfFull()
+		update_Label()
+	else:
+		pass
 
 func checkIfFull():
 	if workersAtBuilding == open_positions:
@@ -50,6 +58,7 @@ func checkIfFull():
 		isFull = false
 
 func freeWorker(worker):
+	%yesSir.play()
 	workersAtBuilding.erase(worker)
 	workers_label.text = str(workersAtBuilding)
 	game_scene.workers.append(worker)

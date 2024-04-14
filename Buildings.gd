@@ -4,34 +4,50 @@ extends Node2D
 @onready var skriptorium = $Skriptorium
 @onready var field = $Field
 @onready var church = $Church
+@onready var game_scene = $".."
+
+func _ready():
+	_on_square_new_building_selected(field)
 
 func _on_brewery_new_building_selected(building):
-	print(building.name, " selected!")
-	building.show_assigning_workers()
-	skriptorium.hide_assigning_workers()
-	field.hide_assigning_workers()
-	church.hide_assigning_workers()
+	if game_scene.current_state == game_scene.NightDay.DAY:
+		print(building.name, " selected!")
+		building.show_assigning_workers()
+		skriptorium.hide_assigning_workers()
+		field.hide_assigning_workers()
+		church.hide_assigning_workers()
+	else:
+		_on_square_new_building_selected(building)
 
 func _on_skriptorium_new_building_selected(building):
-	print(building.name, " selected!")
-	building.show_assigning_workers()
-	brewery.hide_assigning_workers()
-	field.hide_assigning_workers()
-	church.hide_assigning_workers()
+	if game_scene.current_state == game_scene.NightDay.DAY:
+		print(building.name, " selected!")
+		building.show_assigning_workers()
+		brewery.hide_assigning_workers()
+		field.hide_assigning_workers()
+		church.hide_assigning_workers()
+	else:
+		_on_square_new_building_selected(building)
 
 func _on_field_new_building_selected(building):
-	print(building.name, " selected!")
-	building.show_assigning_workers()
-	skriptorium.hide_assigning_workers()
-	brewery.hide_assigning_workers()
-	church.hide_assigning_workers()
+	if game_scene.current_state == game_scene.NightDay.DAY:
+		print(building.name, " selected!")
+		building.show_assigning_workers()
+		skriptorium.hide_assigning_workers()
+		brewery.hide_assigning_workers()
+		church.hide_assigning_workers()
+	else:
+		_on_square_new_building_selected(building)
 
 func _on_church_new_building_selected(building):
-	print(building.name, " selected!")
-	building.show_assigning_workers()
-	skriptorium.hide_assigning_workers()
-	field.hide_assigning_workers()
-	brewery.hide_assigning_workers()
+	if game_scene.current_state == game_scene.NightDay.DAY:
+		print(building.name, " selected!")
+		building.show_assigning_workers()
+		skriptorium.hide_assigning_workers()
+		field.hide_assigning_workers()
+		brewery.hide_assigning_workers()
+	else:
+		_on_square_new_building_selected(building)
 
 func _on_square_new_building_selected(building):
 	print(building.name, " selected!")

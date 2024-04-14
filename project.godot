@@ -10,16 +10,18 @@ config_version=5
 
 [application]
 
-config/name="LudumDare55 - Summoning"
+config/name="Spirits of the forest"
+config/description="Summon spirits to protect your monks!"
+config/version="1.0"
+run/main_scene="res://start_menue.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/lessMonks.png"
 
 [display]
 
 window/size/viewport_width=1200
 window/size/viewport_height=600
-window/stretch/aspect="keep_width"
-window/stretch/scale_mode="integer"
+window/stretch/mode="viewport"
 
 [input]
 

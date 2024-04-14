@@ -1,29 +1,64 @@
-[gd_scene load_steps=6 format=3 uid="uid://hslsq00oju8x"]
+[gd_scene load_steps=13 format=3 uid="uid://hslsq00oju8x"]
 
 [ext_resource type="Script" path="res://square.gd" id="1_yxyyc"]
-[ext_resource type="Texture2D" uid="uid://ckv5ob530pmjp" path="res://icon.svg" id="2_xirhf"]
-[ext_resource type="Texture2D" uid="uid://d4fjwgsqxiwyb" path="res://assets/monkPLUS.png" id="3_a7nr4"]
-[ext_resource type="Texture2D" uid="uid://83jg3j6lmqah" path="res://assets/monk.png" id="4_l0url"]
-[ext_resource type="Texture2D" uid="uid://odjyfqq6fn4m" path="res://assets/monkMINUS.png" id="5_5tk0x"]
+[ext_resource type="Texture2D" uid="uid://xe3s66xp4aan" path="res://assets/square_0.png" id="2_ic63f"]
+[ext_resource type="Texture2D" uid="uid://b0ch0tka2jm08" path="res://assets/square_1.png" id="3_dl82k"]
+[ext_resource type="Texture2D" uid="uid://dmg2pfwflslsa" path="res://assets/newMonks.png" id="3_vjyd2"]
+[ext_resource type="Texture2D" uid="uid://dqsuwhyq5f4h" path="res://assets/square_2.png" id="4_mb2ro"]
+[ext_resource type="Texture2D" uid="uid://cfgjas6di8lnd" path="res://assets/newMonks_pressed.png" id="4_nqrae"]
+[ext_resource type="Texture2D" uid="uid://2648rgf04obm" path="res://assets/square_3.png" id="5_2nmyw"]
+[ext_resource type="Texture2D" uid="uid://duy3qc5i0wv3s" path="res://assets/newMonks_resource.png" id="5_4lex6"]
+[ext_resource type="Texture2D" uid="uid://dlxjy2vqabqkk" path="res://assets/newSpirit.png" id="6_t284o"]
+[ext_resource type="Texture2D" uid="uid://c22jfhdqptdlr" path="res://assets/newSpirit_pressed.png" id="7_klpp6"]
+[ext_resource type="Texture2D" uid="uid://fvlvhbx5gvjq" path="res://assets/newSpirit_resource.png" id="8_kwles"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4ph4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ic63f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dl82k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mb2ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2nmyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mb2ro")
+}],
+"loop": true,
+"name": &"ritual",
+"speed": 5.0
+}]
 
 [node name="SQUARE" type="Node2D"]
+scale = Vector2(1.3, 1.3)
 script = ExtResource("1_yxyyc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_xirhf")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g4ph4")
+frame_progress = 0.488014
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -64.0
-offset_top = -64.0
+offset_top = -128.0
 offset_right = 64.0
-offset_bottom = 64.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -31,15 +66,17 @@ theme_override_constants/margin_bottom = 5
 
 [node name="MonkButton" type="TextureButton" parent="MarginContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_a7nr4")
-texture_pressed = ExtResource("4_l0url")
+texture_normal = ExtResource("3_vjyd2")
+texture_pressed = ExtResource("4_nqrae")
+texture_disabled = ExtResource("5_4lex6")
 stretch_mode = 3
 
 [node name="SpiritButton" type="TextureButton" parent="MarginContainer"]
 visible = false
 layout_mode = 2
-texture_normal = ExtResource("5_5tk0x")
-texture_pressed = ExtResource("4_l0url")
+texture_normal = ExtResource("6_t284o")
+texture_pressed = ExtResource("7_klpp6")
+texture_disabled = ExtResource("8_kwles")
 stretch_mode = 3
 
 [connection signal="button_down" from="MarginContainer/MonkButton" to="." method="_on_monk_button_button_down"]

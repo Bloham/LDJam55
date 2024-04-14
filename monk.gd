@@ -10,7 +10,12 @@ var state = States.IDLE
 
 # Node References
 @onready var animation_player = $AnimationPlayer
-@onready var sprite_2d = $Sprite2D
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
+var health = 1
+var game_scene
+
+
 
 # Movement Variables
 var speed = 100
@@ -35,15 +40,23 @@ signal workerAtBuilding
 
 # Initialization
 func _ready():
+	game_scene = get_tree().get_first_node_in_group("GameManager")
+	print(game_scene.current_state)
 	initialize_monk()
 	for building in get_tree().get_nodes_in_group("Buildings"):
 		building.request_worker.connect(_on_building_request_worker)
 		lookForWork()
 
 func lookForWork():
-	for building in get_tree().get_nodes_in_group("Buildings"):
-		if building.isFull == false:
-			_on_building_request_worker(building)
+	if game_scene.current_state == game_scene.NightDay.DAY:
+		for building in get_tree().get_nodes_in_group("Buildings"):
+			#print("Looking for work: ", building)
+			if building.isFull == false:
+				_on_building_request_worker(building)
+	elif game_scene.current_state == game_scene.NightDay.NIGHT:
+		for sanctuary in get_tree().get_nodes_in_group("Sanctuary"):
+			print("going to sanctuary")
+			assign_to_building(sanctuary)
 
 func initialize_monk():
 	randomize()
@@ -59,6 +72,7 @@ func set_random_animation_speed():
 	
 # Building Worker Request Handler
 func _on_building_request_worker(building):
+	print("Building Assigned: ", assigned_building)
 	if assigned_building == null:  # Monk can be re-assigned regardless of its movement
 		assign_to_building(building)
 
@@ -75,7 +89,10 @@ func _integrate_forces(state):
 		States.IDLE: handle_idle_state(state)
 		States.ASSIGNED: move_to_building(state)
 		States.WORK: work_at_building(state)
-		States.RITUAL: pass  # Future implementation
+		States.RITUAL: pray(state)
+
+func pray(state):
+	animated_sprite_2d.play("pray")
 
 func apply_separation_force(state):
 	var separation_force = get_separation_force()
@@ -93,13 +110,14 @@ func move_towards_waypoint(state):
 	direction = (current_waypoint - global_position).normalized()
 	var desired_velocity = direction * speed
 	state.apply_central_impulse(desired_velocity - state.linear_velocity)
-	sprite_2d.flip_h = direction.x < 0
+	animated_sprite_2d.flip_h = direction.x < 0
 
 
 func check_arrival_at_waypoint(state):
-	if global_position.distance_to(current_waypoint) < 15:
+	if global_position.distance_to(current_waypoint) < 20:
 		is_moving = false
 		animation_player.play("IDLE")
+		animated_sprite_2d.play("default")
 		idle_timer = idle_duration
 		lookForWork()
 
@@ -117,12 +135,15 @@ func move_to_building(state):
 		state.apply_central_impulse(desired_velocity - state.linear_velocity)
 		if has_arrived_at_building():
 			#print("HAS ARRIVED!", target_building)
-			if target_building.isFull == false:
-				self.state = States.WORK
-				target_building.addWorker(self)
+			if game_scene.current_state == game_scene.NightDay.NIGHT:
+				self.state = States.RITUAL
 			else:
-				self.state = States.IDLE
-				lookForWork()
+				if target_building.isFull == false:
+					self.state = States.WORK
+					target_building.addWorker(self)
+				else:
+					self.state = States.IDLE
+					lookForWork()
 			clear_assigned_building()
 
 func work_at_building(state):
@@ -131,12 +152,13 @@ func work_at_building(state):
 
 func become_idle():
 	print("Become Idle Again")
+	animated_sprite_2d.play("default")
 	self.visible = true
 	state = States.IDLE
 	choose_new_waypoint()
 
 func has_arrived_at_building() -> bool:
-	return global_position.distance_to(target_building.global_position) < 40
+	return global_position.distance_to(target_building.global_position) < 80 # adjust if monks get stuck
 
 func clear_assigned_building():
 	assigned_building = null
@@ -155,6 +177,7 @@ func choose_new_waypoint():
 	current_waypoint = starting_position + get_random_wander_offset()
 	is_moving = true
 	animation_player.play("WALK")
+	animated_sprite_2d.play("default")
 
 
 # Helper function within your monk script
@@ -177,3 +200,10 @@ func get_separation_force() -> Vector2:
 		separation_force /= neighbors
 	return separation_force * separation_strength
 
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+	game_scene.unitDies(self)

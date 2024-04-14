@@ -1,13 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://csbumgvwfu0t4"]
+[gd_scene load_steps=11 format=3 uid="uid://csbumgvwfu0t4"]
 
 [ext_resource type="Script" path="res://BUILDING.gd" id="1_jkwlf"]
 [ext_resource type="Texture2D" uid="uid://ckv5ob530pmjp" path="res://icon.svg" id="2_687f6"]
-[ext_resource type="Texture2D" uid="uid://d4fjwgsqxiwyb" path="res://assets/monkPLUS.png" id="3_263f0"]
-[ext_resource type="Texture2D" uid="uid://83jg3j6lmqah" path="res://assets/monk.png" id="3_o8vbn"]
-[ext_resource type="Texture2D" uid="uid://odjyfqq6fn4m" path="res://assets/monkMINUS.png" id="5_7100p"]
+[ext_resource type="Texture2D" uid="uid://dkngeh2myu52e" path="res://assets/moreMonks.png" id="3_c15bk"]
+[ext_resource type="Texture2D" uid="uid://bdcg74hmjyuym" path="res://assets/monk_norm.png" id="3_gb5gh"]
+[ext_resource type="Texture2D" uid="uid://bhsgk0fnsu7ew" path="res://assets/moreMonks_pressed.png" id="4_4cdx5"]
+[ext_resource type="Texture2D" uid="uid://s8rr4ifua1sj" path="res://assets/lessMonks.png" id="5_10cb1"]
+[ext_resource type="Texture2D" uid="uid://8jk10ivakesh" path="res://assets/lessMonks_pressed.png" id="6_i7aee"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34aur"]
 size = Vector2(125, 117)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7ldh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t66iu"]
 
 [node name="BUILDING" type="Node2D" groups=["Buildings"]]
 position = Vector2(196, 182)
@@ -23,66 +29,22 @@ position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_34aur")
 
 [node name="BuildingUI" type="VBoxContainer" parent="."]
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -65.0
-offset_right = 100.0
-offset_bottom = 65.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BuildingInfo" type="Panel" parent="BuildingUI"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="BuildingUI/BuildingInfo"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -130.0
+offset_right = 100.0
+offset_bottom = 90.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BuildingUI/BuildingInfo/MarginContainer"]
-layout_mode = 2
-
-[node name="BuildingNameLable" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "BUILDING_NAME"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="WorkersLabel" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "0/6"
-
-[node name="Label2" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Monks
-"
-
-[node name="VSeparator" type="VSeparator" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="ResourceLabel" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "RESOURCE"
+grow_vertical = 0
 
 [node name="AssigningWorkers" type="Panel" parent="BuildingUI"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t7ldh")
 
 [node name="MarginContainer" type="MarginContainer" parent="BuildingUI/AssigningWorkers"]
 layout_mode = 1
@@ -105,10 +67,11 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture_normal = ExtResource("3_263f0")
-texture_pressed = ExtResource("3_o8vbn")
+texture_normal = ExtResource("3_c15bk")
+texture_pressed = ExtResource("4_4cdx5")
 
 [node name="VSeparator" type="VSeparator" parent="BuildingUI/AssigningWorkers/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -116,8 +79,74 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-texture_normal = ExtResource("5_7100p")
-texture_pressed = ExtResource("3_o8vbn")
+texture_normal = ExtResource("5_10cb1")
+texture_pressed = ExtResource("6_i7aee")
+
+[node name="Label" type="Label" parent="BuildingUI"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="BuildingInfo" type="Panel" parent="BuildingUI"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t66iu")
+
+[node name="MarginContainer" type="MarginContainer" parent="BuildingUI/BuildingInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BuildingUI/BuildingInfo/MarginContainer"]
+layout_mode = 2
+
+[node name="BuildingNameLable" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "BUILDING_NAME"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_gb5gh")
+expand_mode = 3
+
+[node name="WorkersLabel" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0/6"
+
+[node name="Label2" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Monks
+"
+
+[node name="VSeparator" type="VSeparator" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="resourceICON" type="TextureRect" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_gb5gh")
+expand_mode = 3
+flip_h = true
+
+[node name="ResourceLabel" type="Label" parent="BuildingUI/BuildingInfo/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "RESOURCE"
 
 [connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="button_down" from="BuildingUI/AssigningWorkers/MarginContainer/VBoxContainer/HBoxContainer/ADDButton" to="." method="_on_add_button_button_down"]

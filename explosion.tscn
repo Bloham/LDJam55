@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3c5dtiv6v2ur"]
+
+[ext_resource type="Texture2D" uid="uid://p3n4ss0hnnjt" path="res://assets/explosion_0.png" id="1_r5ngo"]
+[ext_resource type="Texture2D" uid="uid://cal2k1h6dq7im" path="res://assets/explosion_1.png" id="2_bvpem"]
+[ext_resource type="Texture2D" uid="uid://cikwu1mi5a8qy" path="res://assets/explosion_2.png" id="3_cjdot"]
+[ext_resource type="Texture2D" uid="uid://dg8tlsv5ny425" path="res://assets/explosion_3.png" id="4_h4aw0"]
+[ext_resource type="Script" path="res://Explosion.gd" id="5_26o3g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_75503"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r5ngo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bvpem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cjdot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h4aw0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_75503")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("5_26o3g")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

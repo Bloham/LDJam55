@@ -1,0 +1,434 @@
+[gd_scene load_steps=31 format=3 uid="uid://dpnyrhcqce0n8"]
+
+[ext_resource type="Script" path="res://start_menue.gd" id="1_3st35"]
+[ext_resource type="Texture2D" uid="uid://rs732x3vqsjk" path="res://assets/background.png" id="2_51774"]
+[ext_resource type="Texture2D" uid="uid://copiln8olfu0l" path="res://assets/field.png" id="3_w6d8j"]
+[ext_resource type="Texture2D" uid="uid://cjptawclbcx7w" path="res://assets/tree1.png" id="4_ol4qt"]
+[ext_resource type="Texture2D" uid="uid://davq1ii661mwd" path="res://assets/tree0.png" id="5_orjuh"]
+[ext_resource type="Texture2D" uid="uid://b30dld0lqe1fm" path="res://assets/bush0.png" id="6_io7a0"]
+[ext_resource type="Texture2D" uid="uid://bdcg74hmjyuym" path="res://assets/monk_norm.png" id="7_b4b7v"]
+[ext_resource type="Texture2D" uid="uid://3xugy3xt4laq" path="res://assets/monk_pray0.png" id="8_sujxb"]
+[ext_resource type="Texture2D" uid="uid://b0ch0tka2jm08" path="res://assets/square_1.png" id="9_14esm"]
+[ext_resource type="Texture2D" uid="uid://dqsuwhyq5f4h" path="res://assets/square_2.png" id="10_jrqol"]
+[ext_resource type="Texture2D" uid="uid://2648rgf04obm" path="res://assets/square_3.png" id="11_vobs8"]
+[ext_resource type="Texture2D" uid="uid://bkqfn2byur61s" path="res://assets/title.png" id="13_16k40"]
+[ext_resource type="Texture2D" uid="uid://hg1jhkshens3" path="res://assets/play.png" id="14_1ismd"]
+[ext_resource type="Texture2D" uid="uid://d4ag0y3n8rlc4" path="res://assets/play_pressed.png" id="15_f2cu4"]
+[ext_resource type="Texture2D" uid="uid://tn5ok4hvs4c7" path="res://assets/play_hover.png" id="16_sait2"]
+[ext_resource type="Texture2D" uid="uid://diho4faxf0snx" path="res://assets/info.png" id="17_p1ec6"]
+[ext_resource type="Texture2D" uid="uid://dduin313ux7o8" path="res://assets/info_pressed.png" id="18_7ler1"]
+[ext_resource type="Texture2D" uid="uid://dcdons08ipxtm" path="res://assets/info_hover.png" id="19_r26yj"]
+[ext_resource type="Texture2D" uid="uid://c4pvyum4mfd6m" path="res://assets/bg_title.png" id="20_2tbd0"]
+[ext_resource type="AudioStream" uid="uid://b4ttv3kso2hrr" path="res://assets/sfx/button.mp3" id="21_g4jbd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1o1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_b4b7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sujxb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fs4km"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_14esm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jrqol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vobs8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_pw2ek"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_4eyf5"]
+resource_name = "spirit"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d60bn"]
+_data = {
+"RESET": SubResource("Animation_pw2ek"),
+"spirit": SubResource("Animation_4eyf5")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tftkt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5fscb"]
+
+[sub_resource type="Animation" id="Animation_55e3m"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoScreen:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(522, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InfoScreen:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_rxum7"]
+resource_name = "fadeIn"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoScreen:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1200, -0.25, 0, 0.25, 0, 522, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InfoScreen:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4e5du"]
+_data = {
+"RESET": SubResource("Animation_55e3m"),
+"fadeIn": SubResource("Animation_rxum7")
+}
+
+[node name="StartMenue" type="Node2D"]
+script = ExtResource("1_3st35")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -1225.0
+offset_top = -271.0
+offset_right = 1357.0
+offset_bottom = 941.0
+texture = ExtResource("2_51774")
+
+[node name="Field" type="Sprite2D" parent="."]
+position = Vector2(184, 555)
+scale = Vector2(2.29688, 2.29688)
+texture = ExtResource("3_w6d8j")
+
+[node name="Monk" type="AnimatedSprite2D" parent="."]
+position = Vector2(384.5, 475)
+scale = Vector2(2.59375, 2.59375)
+sprite_frames = SubResource("SpriteFrames_u1o1n")
+autoplay = "default"
+frame_progress = 0.0861272
+
+[node name="Monk5" type="AnimatedSprite2D" parent="."]
+position = Vector2(478.5, 379)
+scale = Vector2(2.59375, 2.59375)
+sprite_frames = SubResource("SpriteFrames_u1o1n")
+autoplay = "default"
+frame_progress = 0.422552
+
+[node name="Monk2" type="AnimatedSprite2D" parent="."]
+position = Vector2(777.5, 479)
+scale = Vector2(2.59375, 2.59375)
+sprite_frames = SubResource("SpriteFrames_u1o1n")
+autoplay = "default"
+frame_progress = 0.331199
+flip_h = true
+
+[node name="ritual" type="AnimatedSprite2D" parent="."]
+position = Vector2(569.5, 460)
+scale = Vector2(2.59375, 2.59375)
+sprite_frames = SubResource("SpriteFrames_fs4km")
+autoplay = "default"
+frame_progress = 0.427496
+
+[node name="Monk3" type="AnimatedSprite2D" parent="."]
+position = Vector2(668.5, 542)
+scale = Vector2(2.59375, 2.59375)
+sprite_frames = SubResource("SpriteFrames_u1o1n")
+autoplay = "default"
+frame_progress = 0.748938
+flip_h = true
+
+[node name="Monk4" type="AnimatedSprite2D" parent="."]
+position = Vector2(681.5, 382)
+scale = Vector2(2.59375, 2.59375)
+sprite_frames = SubResource("SpriteFrames_u1o1n")
+autoplay = "default"
+frame_progress = 0.147709
+flip_h = true
+
+[node name="Monk6" type="AnimatedSprite2D" parent="."]
+position = Vector2(485.5, 551)
+scale = Vector2(2.59375, 2.59375)
+sprite_frames = SubResource("SpriteFrames_u1o1n")
+autoplay = "default"
+frame_progress = 0.906191
+
+[node name="Trees" type="Node2D" parent="."]
+position = Vector2(573, 294)
+scale = Vector2(2, 2)
+
+[node name="Tree5" type="Sprite2D" parent="Trees"]
+position = Vector2(245, -147.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree6" type="Sprite2D" parent="Trees"]
+position = Vector2(288, -112.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree7" type="Sprite2D" parent="Trees"]
+position = Vector2(333, -113.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree0" type="Sprite2D" parent="Trees"]
+position = Vector2(278.5, -87)
+texture = ExtResource("5_orjuh")
+
+[node name="Tree15" type="Sprite2D" parent="Trees"]
+position = Vector2(101, 138)
+texture = ExtResource("5_orjuh")
+
+[node name="Tree16" type="Sprite2D" parent="Trees"]
+position = Vector2(-144.5, 130.5)
+texture = ExtResource("5_orjuh")
+
+[node name="Tree18" type="Sprite2D" parent="Trees"]
+position = Vector2(-217.5, -149.5)
+texture = ExtResource("5_orjuh")
+
+[node name="Tree19" type="Sprite2D" parent="Trees"]
+position = Vector2(51, -169.5)
+texture = ExtResource("5_orjuh")
+
+[node name="Bush4" type="Sprite2D" parent="Trees"]
+position = Vector2(-263, -96.625)
+scale = Vector2(0.929688, 0.853516)
+texture = ExtResource("6_io7a0")
+
+[node name="Tree17" type="Sprite2D" parent="Trees"]
+position = Vector2(-303, -46.5)
+texture = ExtResource("5_orjuh")
+
+[node name="Bush0" type="Sprite2D" parent="Trees"]
+position = Vector2(293.5, 25.5)
+texture = ExtResource("6_io7a0")
+
+[node name="Bush1" type="Sprite2D" parent="Trees"]
+position = Vector2(83.5, -129.5)
+scale = Vector2(0.828125, 0.761719)
+texture = ExtResource("6_io7a0")
+
+[node name="Bush2" type="Sprite2D" parent="Trees"]
+position = Vector2(175, -108.5)
+scale = Vector2(0.828125, 0.761719)
+texture = ExtResource("6_io7a0")
+
+[node name="Bush3" type="Sprite2D" parent="Trees"]
+position = Vector2(-81, -144)
+scale = Vector2(0.828125, 0.761719)
+texture = ExtResource("6_io7a0")
+
+[node name="Tree3" type="Sprite2D" parent="Trees"]
+position = Vector2(244.5, 81.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree4" type="Sprite2D" parent="Trees"]
+position = Vector2(302.5, 94)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree2" type="Sprite2D" parent="Trees"]
+position = Vector2(274.5, 143.5)
+texture = ExtResource("5_orjuh")
+
+[node name="Tree1" type="Sprite2D" parent="Trees"]
+position = Vector2(313, -36)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree8" type="Sprite2D" parent="Trees"]
+position = Vector2(190.5, 132.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree9" type="Sprite2D" parent="Trees"]
+position = Vector2(99, 166.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree10" type="Sprite2D" parent="Trees"]
+position = Vector2(6.49997, 137)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree11" type="Sprite2D" parent="Trees"]
+position = Vector2(-73.5, 169.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree12" type="Sprite2D" parent="Trees"]
+position = Vector2(-183.5, 173)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree13" type="Sprite2D" parent="Trees"]
+position = Vector2(-250, 160.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="Tree14" type="Sprite2D" parent="Trees"]
+position = Vector2(-284, 38.5)
+texture = ExtResource("4_ol4qt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d60bn")
+}
+autoplay = "spirit"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 700
+theme_override_constants/margin_bottom = 150
+
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tftkt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_16k40")
+expand_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_5fscb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayTextureButton" type="TextureButton" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("14_1ismd")
+texture_pressed = ExtResource("15_f2cu4")
+texture_hover = ExtResource("16_sait2")
+stretch_mode = 5
+
+[node name="InfoTextureButton" type="TextureButton" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("17_p1ec6")
+texture_pressed = ExtResource("18_7ler1")
+texture_hover = ExtResource("19_r26yj")
+stretch_mode = 5
+
+[node name="InfoScreen" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -678.0
+offset_right = -0.000976563
+offset_bottom = 600.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("20_2tbd0")
+flip_h = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InfoScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InfoScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/InfoScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "How to Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/InfoScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/InfoScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+text = "1. Send monks to work to generate resources!
+2. Create new Monks at the towns Square! (Costs Food and Faith!)
+3. Summon Spirits to defend yourself in the night. BUT BE WARNED! Every spirit you Summon needs a monk as sacrifice! 
+
+Survive as long as possible, when your last monk died the game is over!
+
+
+This is an entry for the LudumDare 55 Compo! And my first time dabbeling with state machines and a more advanced code structure. Thank you Senad for the inspiration and the Book suggestions this year! "
+fit_content = true
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_4e5du")
+}
+
+[node name="BgTitle" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(282, 267)
+rotation = -0.0873478
+scale = Vector2(1.29167, 2.3125)
+texture = ExtResource("20_2tbd0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_g4jbd")
+
+[connection signal="button_down" from="CanvasLayer/MarginContainer/Panel/VBoxContainer/HBoxContainer/PlayTextureButton" to="." method="_on_play_texture_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/MarginContainer/Panel/VBoxContainer/HBoxContainer/InfoTextureButton" to="." method="_on_info_texture_button_button_down"]
